@@ -12,9 +12,22 @@ public class ClienteService {
     private List<Cliente> clientes = new ArrayList<>();
 
     //Cadastrar Cliente
-    public Cliente cadastrarCliente(Cliente cliente){
+    public Cliente cadastrarCliente(Cliente cliente) throws Exception {
+        clienteDuplicado(cliente.getCpf(), cliente.getEmail());
         clientes.add(cliente);
         return cliente;
+    }
+
+    //Verificar cliente duplicado por cpf
+    public void clienteDuplicado(String cpf, String email) throws Exception {
+        for (Cliente cliente: clientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                throw new Exception("Cliente já cadastrado no nosso banco de dados");
+            }
+            else if (cliente.getEmail().equals(email)) {
+                throw new Exception("Email já cadastrado no nosso banco de dados");
+            }
+        }
     }
 
     //Pesquisar Cliente pelo cpf
@@ -25,5 +38,10 @@ public class ClienteService {
             }
         }
         throw new Exception("Cliente não encontrado");
+    }
+
+    //Mostrar cliente
+    public List<Cliente> mostrarCliente(){
+        return clientes;
     }
 }
