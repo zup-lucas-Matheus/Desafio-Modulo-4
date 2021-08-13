@@ -3,6 +3,7 @@ package com.br.zup.ecommerceZUP.controller;
 import com.br.zup.ecommerceZUP.dominio.Cliente;
 import com.br.zup.ecommerceZUP.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Cliente cadastrarCliente(@RequestBody Cliente cliente) throws Exception {
         return clienteService.cadastrarCliente(cliente);
@@ -20,11 +22,12 @@ public class ClienteController {
 
     @GetMapping("/pesquisar")
     public Cliente pesquisarCliente(@RequestParam String cpf) throws Exception {
+
         return clienteService.pesquisarCliente(cpf);
     }
 
     @GetMapping
-    public List<Cliente> mostrarClientes(){
+    public List<Cliente> mostrarClientes() {
         return clienteService.mostrarCliente();
     }
 
