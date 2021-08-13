@@ -1,0 +1,59 @@
+
+#POST
+cadastra Clientes
+localhost:8080/clientes
+{
+    "nome": "Lucas",
+    "cpf": "123",
+    "email": "lmatheus@123"
+}
+
+#GET
+pesquisar Clientes pelo cpf
+localhost:8080/clientes/pesquisar?cpf=123
+
+
+#POST
+cadastra produtos
+localhost:8080/produtos
+
+{
+    "nome": "Feijao",
+    "descricao": "Carga de Feijao",
+    "codigoDoProduto": "20",
+    "quantidade": 20,
+    "preco": 9.0
+}
+
+#GET
+pesquisarProdutos
+localhost:8080/produtos
+
+#GET
+pesquisar Produtos Por Código
+localhost:8080/produtos/codigoProduto?codigoDoProduto=20
+
+#GET
+pesquisar Produtos Por Preço
+localhost:8080/produtos/preco?preco=9
+
+#POST
+efetuar compra do cliente
+localhost:8080/compras
+{
+    "cliente":{ "cpf": "123" },
+    "produtosDoCliente":
+    [
+        {
+        "codigoDoProduto": "20",
+        "quantidade": 20 },
+
+        {
+        "codigoDoProduto": "10",
+        "quantidade": 10
+        }
+    ]
+}
+#GET
+localiza a compra do cliente pelo cpf do mesmo.
+localhost:8080/compras/pesquisa?cpf=1234
